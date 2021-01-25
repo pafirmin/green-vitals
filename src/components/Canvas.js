@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from "react";
 
 const Canvas = ({ data }) => {
+  const canvasRef = useRef(null);
+
   useEffect(() => {
-    data && generatePie();
-  });
+    const ctx = canvasRef.current.getContext("2d");
+    data && generatePie(ctx);
+  }, [data]);
 
   const chartColours = {
     biomass: "#79db88",
@@ -13,13 +16,13 @@ const Canvas = ({ data }) => {
     coal: "#443636",
     nuclear: "#5de6c6",
     imports: "#e65d5d",
-    gas: "#6e5de6",
+    gas: "#8d7cdf",
     other: "#eb2bee",
   };
 
-  const generatePie = () => {
-    clearCanvas();
-    const filteredData = data.filter((fuel) => fuel.perc > 0.3);
+  const generatePie = (ctx) => {
+    clearCanvas(ctx);
+    const filteredData = data.filter((fuel) => fuel.perc > 0.5);
     const total = filteredData.reduce((count, fuel) => count + fuel.perc, 0);
     const formattedData = filteredData.map((fuel) => {
       return {
@@ -30,17 +33,16 @@ const Canvas = ({ data }) => {
 
     let accum = 0;
     formattedData.forEach((fuel) => {
-      drawSlice(accum, fuel);
+      drawSlice(ctx, accum, fuel);
       accum += fuel.radians;
     });
   };
 
-  const drawSlice = (arcStart, fuelData) => {
+  const drawSlice = (ctx, arcStart, fuelData) => {
     const { fuel, perc, radians } = fuelData;
-    const chart = document.getElementById("chart");
-    const ctx = chart.getContext("2d");
-    const [centerX, centerY] = [chart.width / 2, chart.height / 2];
-    const radius = (chart.height / 2) * 0.75;
+    const canvas = canvasRef.current;
+    const [centerX, centerY] = [canvas.width / 2, canvas.height / 2];
+    const radius = (canvas.height / 2) * 0.75;
     const arcEnd = arcStart + radians;
 
     ctx.beginPath();
@@ -62,16 +64,14 @@ const Canvas = ({ data }) => {
     ctx.fillText(`${fuel}: ${perc}%`, labelX, labelY);
   };
 
-  const clearCanvas = () => {
-    const canvas = document.getElementById("chart");
-    const ctx = canvas.getContext("2d");
-
+  const clearCanvas = (ctx) => {
+    const canvas = canvasRef.current;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   };
 
   return (
     <div>
-      <canvas id="chart" width="700" height="400"></canvas>
+      <canvas ref={canvasRef} width="700" height="400"></canvas>
     </div>
   );
 };

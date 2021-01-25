@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import services from "../services/requests";
 
 const SubmitBtn = styled.button`
   border: none;
@@ -15,7 +16,21 @@ const PostcodeInput = styled.input`
   font-size: 0.8em;
 `;
 
-const PostCodeForm = ({ handleSubmit, handleChange }) => {
+const PostCodeForm = ({ setLocationData, setSubmitted }) => {
+  const [postcode, setPostcode] = useState("");
+
+  const handleChange = (e) => {
+    setPostcode(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = await services.fetchLocationData(postcode);
+
+    setLocationData(data);
+    setSubmitted(true);
+  };
   return (
     <div>
       <form

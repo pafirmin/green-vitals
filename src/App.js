@@ -1,52 +1,38 @@
-import React, { Fragment, useState } from "react";
-import axios from "axios";
-import Chart from "./components/Chart";
-import Loader from "./components/Loader";
+import React, { Fragment, useEffect, useState } from "react";
+import services from "./services/requests";
 import { GlobalStyle } from "./GlobalStyle";
 import PostCodeForm from "./components/PostCodeForm";
 import Canvas from "./components/Canvas";
 
 const App = () => {
-  const [data, setData] = useState();
-  const [postCode, setPostCode] = useState("");
-  const [location, setLocation] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [energyData, setEnergyData] = useState();
+  const [pollutionData, setPollutionData] = useState();
+  const [locationData, setLocationData] = useState({
+    admin_district: "",
+    outcode: "",
+    latitude: "",
+    longitude: "",
+  });
 
-  const handleChange = (e) => {
-    setPostCode(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-
-      const date = new Date();
-      console.log(date.toISOString());
-
-      const res = await axios.get(
-        `https://api.carbonintensity.org.uk/regional/intensity/${date.toISOString()}/fw48h/postcode/${postCode}`
-      );
-      setData(res.data.data.data[0].generationmix);
-      setLocation(res.data.data.shortname);
-      setSubmitted(true);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (submitted) {
+      const { outcode } = locationData;
+      services.fetchEnergeyData(outcode).then((data) => setEnergyData(data));
     }
-  };
+  }, [submitted, locationData]);
 
   return (
     <Fragment>
       <GlobalStyle />
-      <PostCodeForm handleSubmit={handleSubmit} handleChange={handleChange} />
+      <PostCodeForm
+        setLocationData={setLocationData}
+        setSubmitted={setSubmitted}
+      />
       <div style={{ margin: "auto", textAlign: "center" }}>
-        <h3>{location}</h3>
-        <Canvas data={data} />
+        <h3>{locationData.admin_district}</h3>
+        <Canvas data={energyData} />
       </div>
-      {loading && <Loader />}
     </Fragment>
   );
 };
