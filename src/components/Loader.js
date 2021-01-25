@@ -13,7 +13,7 @@ const loading = keyframes`
 const LoaderWidget = styled.div`
   width: 20px;
   height: 20px;
-  background: #00abff;
+  background: #fff;
   position: relative;
   animation: ${loading};
   animation-duration: 1.4s;
@@ -24,7 +24,16 @@ const LoaderWidget = styled.div`
 
 const Loader = () => {
   return (
-    <div style={{ width: "50px", height: "50px" }}>
+    <div
+      style={{
+        width: "50px",
+        height: "50px",
+        position: "fixed",
+        bottom: "50%",
+        left: "50%",
+        transform: "translate(-50%)",
+      }}
+    >
       <LoaderWidget />
     </div>
   );
