@@ -29,7 +29,9 @@ const fetchEnergeyData = async (outcode) => {
       `https://api.carbonintensity.org.uk/regional/intensity/${date}/fw48h/postcode/${outcode}`
     );
 
-    return res.data.data.data[0].generationmix;
+    console.log(res.data.data.data[0]);
+
+    return res.data.data.data[0];
   } catch (err) {
     console.error(err);
   }
@@ -41,10 +43,12 @@ const fetchPollutionData = async (lat, long) => {
       `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${long}&appid=3d1641233d5dc6224b739cf77d08866e`
     );
 
-    return res.list[0].components;
+    return res.data.list[0].components;
   } catch (err) {
     console.error(err);
   }
 };
 
-export default { fetchLocationData, fetchPollutionData, fetchEnergeyData };
+const services = { fetchLocationData, fetchPollutionData, fetchEnergeyData };
+
+export default services;

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import services from "./services/requests";
 import { GlobalStyle } from "./GlobalStyle";
 import PostCodeForm from "./components/PostCodeForm";
-import Canvas from "./components/Canvas";
+import EnergyData from "./components/EnergyData";
 
 const App = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -17,10 +17,20 @@ const App = () => {
 
   useEffect(() => {
     if (submitted) {
-      const { outcode } = locationData;
-      services.fetchEnergeyData(outcode).then((data) => setEnergyData(data));
+      fetchData();
     }
-  }, [submitted, locationData]);
+  }, [locationData]);
+
+  const fetchData = async () => {
+    const { outcode, latitude, longitude } = locationData;
+    const [pollutionRes, energyRes] = await Promise.all([
+      services.fetchPollutionData(latitude, longitude),
+      services.fetchEnergeyData(outcode),
+    ]);
+
+    setEnergyData(energyRes);
+    setPollutionData(pollutionRes);
+  };
 
   return (
     <Fragment>
@@ -29,9 +39,9 @@ const App = () => {
         setLocationData={setLocationData}
         setSubmitted={setSubmitted}
       />
-      <div style={{ margin: "auto", textAlign: "center" }}>
-        <h3>{locationData.admin_district}</h3>
-        <Canvas data={energyData} />
+      <div style={{ margin: "auto" }}>
+        <h2 style={{ marginLeft: "1rem" }}>{locationData.admin_district}</h2>
+        {energyData && <EnergyData data={energyData} />}
       </div>
     </Fragment>
   );

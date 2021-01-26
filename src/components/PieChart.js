@@ -1,45 +1,25 @@
 import React, { useEffect, useRef } from "react";
 
-const Canvas = ({ data }) => {
+const PieChart = ({ data, chartColours }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const ctx = canvasRef.current.getContext("2d");
-    data && generatePie(ctx);
+    generatePie(ctx);
   }, [data]);
-
-  const chartColours = {
-    biomass: "#79db88",
-    solar: "#ffb555",
-    wind: "#a8d6ff",
-    hydro: "#3079b9",
-    coal: "#443636",
-    nuclear: "#5de6c6",
-    imports: "#e65d5d",
-    gas: "#8d7cdf",
-    other: "#eb2bee",
-  };
 
   const generatePie = (ctx) => {
     clearCanvas(ctx);
-    const filteredData = data.filter((fuel) => fuel.perc > 0.5);
-    const total = filteredData.reduce((count, fuel) => count + fuel.perc, 0);
-    const formattedData = filteredData.map((fuel) => {
-      return {
-        ...fuel,
-        radians: (fuel.perc / total) * (Math.PI * 2),
-      };
-    });
 
     let accum = 0;
-    formattedData.forEach((fuel) => {
-      drawSlice(ctx, accum, fuel);
-      accum += fuel.radians;
+    data.forEach((obj) => {
+      drawSlice(ctx, accum, obj);
+      accum += obj.radians;
     });
   };
 
-  const drawSlice = (ctx, arcStart, fuelData) => {
-    const { fuel, perc, radians } = fuelData;
+  const drawSlice = (ctx, arcStart, obj) => {
+    const { label, perc, radians } = obj;
     const canvas = canvasRef.current;
     const [centerX, centerY] = [canvas.width / 2, canvas.height / 2];
     const radius = (canvas.height / 2) * 0.75;
@@ -49,7 +29,7 @@ const Canvas = ({ data }) => {
     ctx.moveTo(centerX, centerY);
     ctx.arc(centerX, centerY, radius, arcStart, arcEnd, false);
     ctx.closePath();
-    ctx.fillStyle = chartColours[fuel];
+    ctx.fillStyle = chartColours[label];
     ctx.fill();
 
     const midPoint = arcStart + (arcEnd - arcStart) / 2;
@@ -61,7 +41,7 @@ const Canvas = ({ data }) => {
     ctx.fontWeight = "400";
     ctx.fillStyle = "#fff";
     ctx.textAlign = labelX < centerX ? "right" : "left";
-    ctx.fillText(`${fuel}: ${perc}%`, labelX, labelY);
+    ctx.fillText(`${label}: ${perc}%`, labelX, labelY);
   };
 
   const clearCanvas = (ctx) => {
@@ -71,9 +51,9 @@ const Canvas = ({ data }) => {
 
   return (
     <div>
-      <canvas ref={canvasRef} width="700" height="400"></canvas>
+      <canvas ref={canvasRef} width="520" height="400"></canvas>
     </div>
   );
 };
 
-export default Canvas;
+export default PieChart;
