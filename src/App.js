@@ -48,7 +48,7 @@ const App = () => {
     <Fragment>
       <GlobalStyle />
       {loading && <Loader />}
-      <div style={{ width: "1100px", margin: "auto" }}>
+      <div style={{ maxWidth: "1100px", margin: "auto" }}>
         <PostCodeForm
           setLocationData={setLocationData}
           setSubmitted={setSubmitted}

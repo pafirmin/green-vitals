@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import PieChart from "../charts/PieChart";
 import Table from "../charts/Table";
+import DataContainer from "../layout/DataContainer";
 
 const chartColours = {
   biomass: "#79db88",
@@ -20,7 +21,7 @@ const EnergyData = ({ data }) => {
     const total = filteredData.reduce((count, obj) => count + obj.perc, 0);
     const formattedData = filteredData.map((obj) => {
       return {
-        perc: obj.perc,
+        value: obj.perc,
         label: obj.fuel,
         radians: (obj.perc / total) * (Math.PI * 2),
       };
@@ -28,8 +29,14 @@ const EnergyData = ({ data }) => {
     return formattedData;
   }, [data]);
 
+  const tableData = useCallback(() => {
+    return data.generationmix
+      .sort((a, b) => a.perc < b.perc)
+      .map((fuel) => [fuel.fuel, fuel.perc]);
+  }, [data]);
+
   return (
-    <div style={{ borderTop: "2px solid #fff", padding: ".5rem 0" }}>
+    <section style={{ borderTop: "2px solid #fff", padding: ".5rem 0" }}>
       <header style={{ textAlign: "center" }}>
         <h3>Energy Overview</h3>
         <p>
@@ -37,16 +44,11 @@ const EnergyData = ({ data }) => {
           {`${data.intensity.forecast} (${data.intensity.index})`}
         </p>
       </header>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Table data={data.generationmix} />
+      <DataContainer>
+        <Table headings={["Fuel source", "%"]} data={tableData()} />
         <PieChart data={chartData()} chartColours={chartColours} />
-      </div>
-    </div>
+      </DataContainer>
+    </section>
   );
 };
 

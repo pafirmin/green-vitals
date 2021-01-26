@@ -1,5 +1,7 @@
 import React, { useCallback } from "react";
 import BarChart from "../charts/BarChart";
+import Table from "../charts/Table";
+import DataContainer from "../layout/DataContainer";
 
 const barColours = {
   no: "#79db88",
@@ -19,25 +21,48 @@ const airIndex = {
   5: "Very Poor",
 };
 
+const pollutantIndex = {
+  co: "Carbon monnoxide",
+  no: "Nitrous oxide",
+  no2: "Nitrous dioxide",
+  o3: "Ozone",
+  so2: "Sulphur dioxide",
+  pm2_5: "Fine particulates",
+  pm10: "Coarse particulates",
+  nh3: "Ammonia",
+};
+
 const PollutionData = ({ data }) => {
-  const formattedData = useCallback(() => {
-    delete data.components.co;
-    return Object.keys(data.components).map((key) => ({
-      label: key,
-      count: data.components[key],
-    }));
+  const chartData = useCallback(() => {
+    return Object.keys(data.components)
+      .filter((key) => key !== "co")
+      .map((key) => ({
+        label: key,
+        value: data.components[key],
+      }));
+  }, [data]);
+
+  const tableData = useCallback(() => {
+    return Object.entries(data.components).map(([pollutant, value]) => [
+      pollutantIndex[pollutant],
+      value,
+    ]);
   }, [data]);
 
   return (
-    <div style={{ borderTop: "2px solid #fff", padding: ".5rem 0" }}>
+    <section style={{ borderTop: "2px solid #fff", padding: ".5rem 0" }}>
       <header style={{ textAlign: "center" }}>
         <h3>Pollution Overview</h3>
         <p>
           Air Quality Index: {`${data.main.aqi} (${airIndex[data.main.aqi]})`}
         </p>
       </header>
-      <BarChart data={formattedData()} colours={barColours} />
-    </div>
+
+      <DataContainer>
+        <BarChart data={chartData()} colours={barColours} />
+        <Table headings={["Pollutant", "ug/m3"]} data={tableData()} />
+      </DataContainer>
+    </section>
   );
 };
 

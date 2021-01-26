@@ -19,7 +19,8 @@ const PieChart = ({ data, chartColours }) => {
   };
 
   const drawSlice = (ctx, arcStart, obj) => {
-    const { label, perc, radians } = obj;
+    // Draw arcs
+    const { label, value, radians } = obj;
     const canvas = canvasRef.current;
     const [centerX, centerY] = [canvas.width / 2, canvas.height / 2];
     const radius = (canvas.height / 2) * 0.75;
@@ -32,6 +33,7 @@ const PieChart = ({ data, chartColours }) => {
     ctx.fillStyle = chartColours[label];
     ctx.fill();
 
+    // Draw labels
     const midPoint = arcStart + (arcEnd - arcStart) / 2;
     const labelPos = radius * 1.1;
     const labelX = centerX + labelPos * Math.cos(midPoint);
@@ -41,7 +43,7 @@ const PieChart = ({ data, chartColours }) => {
     ctx.fontWeight = "400";
     ctx.fillStyle = "#fff";
     ctx.textAlign = labelX < centerX ? "right" : "left";
-    ctx.fillText(`${label}: ${perc}%`, labelX, labelY);
+    ctx.fillText(`${label}: ${value}%`, labelX, labelY);
   };
 
   const clearCanvas = (ctx) => {
