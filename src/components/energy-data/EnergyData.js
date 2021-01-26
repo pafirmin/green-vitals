@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import PieChart from "./PieChart";
-import Table from "./Table";
+import PieChart from "../charts/PieChart";
+import Table from "../charts/Table";
 
 const chartColours = {
   biomass: "#79db88",
@@ -29,9 +29,7 @@ const EnergyData = ({ data }) => {
   }, [data]);
 
   return (
-    <div
-      style={{ borderTop: "1px solid #fff", borderBottom: "1px solid #fff" }}
-    >
+    <div style={{ borderTop: "2px solid #fff", padding: ".5rem 0" }}>
       <header style={{ textAlign: "center" }}>
         <h3>Energy Overview</h3>
         <p>

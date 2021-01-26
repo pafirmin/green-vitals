@@ -7,6 +7,11 @@ export const GlobalStyle = createGlobalStyle`
     color: #fff;
   }
 
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 900;
+  }
+
   * {
     padding: 0;
     margin: 0;

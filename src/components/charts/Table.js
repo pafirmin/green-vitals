@@ -10,9 +10,12 @@ const Table = ({ data }) => {
         width: "520px",
       }}
     >
-      <div>Fuel source</div>
-      <div>%</div>
-
+      <div>
+        <h4>Fuel source</h4>
+      </div>
+      <div>
+        <h4>%</h4>
+      </div>
       {data
         .sort((a, b) => a.perc < b.perc)
         .map((fuel) => (

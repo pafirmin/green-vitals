@@ -17,7 +17,7 @@ const fetchLocationData = async (postcode) => {
       longitude,
     };
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 };
 
@@ -33,7 +33,7 @@ const fetchEnergeyData = async (outcode) => {
 
     return res.data.data.data[0];
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 };
 
@@ -43,9 +43,9 @@ const fetchPollutionData = async (lat, long) => {
       `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${long}&appid=3d1641233d5dc6224b739cf77d08866e`
     );
 
-    return res.data.list[0].components;
+    return res.data.list[0];
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 };
 

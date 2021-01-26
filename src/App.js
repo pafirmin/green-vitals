@@ -2,9 +2,12 @@ import React, { Fragment, useEffect, useState } from "react";
 import services from "./services/requests";
 import { GlobalStyle } from "./GlobalStyle";
 import PostCodeForm from "./components/PostCodeForm";
-import EnergyData from "./components/EnergyData";
+import EnergyData from "./components/energy-data/EnergyData";
+import Loader from "./components/utils/Loader";
+import PollutionData from "./components/pollution-data/PollutionData";
 
 const App = () => {
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [energyData, setEnergyData] = useState();
   const [pollutionData, setPollutionData] = useState();
@@ -19,29 +22,42 @@ const App = () => {
     if (submitted) {
       fetchData();
     }
-  }, [locationData]);
+  }, [submitted, locationData]);
 
   const fetchData = async () => {
-    const { outcode, latitude, longitude } = locationData;
-    const [pollutionRes, energyRes] = await Promise.all([
-      services.fetchPollutionData(latitude, longitude),
-      services.fetchEnergeyData(outcode),
-    ]);
+    try {
+      setLoading(true);
 
-    setEnergyData(energyRes);
-    setPollutionData(pollutionRes);
+      const { outcode, latitude, longitude } = locationData;
+
+      const [pollutionRes, energyRes] = await Promise.all([
+        services.fetchPollutionData(latitude, longitude),
+        services.fetchEnergeyData(outcode),
+      ]);
+
+      setEnergyData(energyRes);
+      setPollutionData(pollutionRes);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <Fragment>
       <GlobalStyle />
-      <PostCodeForm
-        setLocationData={setLocationData}
-        setSubmitted={setSubmitted}
-      />
-      <div style={{ margin: "auto" }}>
-        <h2 style={{ marginLeft: "1rem" }}>{locationData.admin_district}</h2>
-        {energyData && <EnergyData data={energyData} />}
+      {loading && <Loader />}
+      <div style={{ width: "1100px", margin: "auto" }}>
+        <PostCodeForm
+          setLocationData={setLocationData}
+          setSubmitted={setSubmitted}
+        />
+        <div style={{ margin: "auto" }}>
+          <h2 style={{ marginLeft: "1rem" }}>{locationData.admin_district}</h2>
+          {energyData && <EnergyData data={energyData} />}
+          {pollutionData && <PollutionData data={pollutionData} />}
+        </div>
       </div>
     </Fragment>
   );
