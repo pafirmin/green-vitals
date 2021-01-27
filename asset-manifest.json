@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/green-vitals/static/js/main.0e7df0c5.chunk.js",
-    "main.js.map": "/green-vitals/static/js/main.0e7df0c5.chunk.js.map",
+    "main.js": "/green-vitals/static/js/main.63b6c882.chunk.js",
+    "main.js.map": "/green-vitals/static/js/main.63b6c882.chunk.js.map",
     "runtime-main.js": "/green-vitals/static/js/runtime-main.45dbcf5b.js",
     "runtime-main.js.map": "/green-vitals/static/js/runtime-main.45dbcf5b.js.map",
     "static/js/2.c6227997.chunk.js": "/green-vitals/static/js/2.c6227997.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.45dbcf5b.js",
     "static/js/2.c6227997.chunk.js",
-    "static/js/main.0e7df0c5.chunk.js"
+    "static/js/main.63b6c882.chunk.js"
   ]
 }
