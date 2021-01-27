@@ -15,7 +15,7 @@ const FormWrapper = styled.div`
 
 const SubmitBtn = styled.button`
   border: none;
-  background-color: #00abff;
+  background-color: #85d018;
   color: #fff;
   padding: 0.3em 0.5em;
   cursor: pointer;
@@ -24,7 +24,6 @@ const SubmitBtn = styled.button`
 `;
 
 const PostcodeInput = styled.input`
-  border-radius: 0;
   border: none;
   padding: 0.6rem 1em;
   font-size: 1.1em;
@@ -45,7 +44,7 @@ const PostCodeForm = ({ setLocationData, setSubmitted }) => {
   const [error, setError] = useState("");
   const [postcode, setPostcode] = useState("");
   const [formStyle, setFormStyle] = useState({
-    top: "30%",
+    top: "30vh",
     fontSize: "1.8rem",
     width: "200px",
   });
@@ -68,7 +67,11 @@ const PostCodeForm = ({ setLocationData, setSubmitted }) => {
       const data = await services.fetchLocationData(postcode);
 
       setError("");
-      setFormStyle({ top: "40px", fontSize: "1.2rem", width: "150px" });
+      setFormStyle({
+        top: "40px",
+        fontSize: "1.2rem",
+        width: "150px",
+      });
       setLocationData(data);
       setSubmitted(true);
     } catch (err) {

@@ -4,7 +4,11 @@ const BarChart = ({ data, colours }) => {
   const canvasRef = useRef(null);
   const BAR_WIDTH = 60;
   const BAR_GAP = 10;
-  const MAX_VALUE = 30;
+  const MAX_VALUE = data.reduce(
+    (max, obj) =>
+      obj.value > max ? Math.ceil(((obj.value + 1) / 10) * 10) : max,
+    0
+  );
   const LABEL_PADDING = 30;
 
   useEffect(() => {
@@ -61,7 +65,7 @@ const BarChart = ({ data, colours }) => {
     ctx.fillStyle = colours[obj.label];
     ctx.fillRect(rectX, rectY, BAR_WIDTH, barHeight);
 
-    // Draw labels
+    // Draw label
     const labelX = rectX + BAR_WIDTH / 2;
     const labelY = rectY + barHeight + 20;
 

@@ -21,7 +21,7 @@ const LoaderWidget = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: ${loading} 1.8s infinite;
+    animation: ${loading} 1.8s linear infinite;
   }
 
   & div:nth-child(2) {

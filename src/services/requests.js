@@ -29,8 +29,6 @@ const fetchEnergeyData = async (outcode) => {
       `https://api.carbonintensity.org.uk/regional/intensity/${date}/fw48h/postcode/${outcode}`
     );
 
-    console.log(res.data.data.data[0]);
-
     return res.data.data.data[0];
   } catch (err) {
     throw err;

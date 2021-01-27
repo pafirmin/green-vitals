@@ -4,11 +4,11 @@ const Logo = (props) => {
   return (
     <div
       style={{
-        position: "absolute",
-        top: props.submitted ? "15px" : "16%",
-        left: props.submitted ? "200px" : "50%",
+        position: props.submitted ? "block" : "absolute",
+        top: props.submitted ? "10px" : "16vh",
+        left: props.submitted ? "60px" : "50%",
         transform: props.submitted ? "" : "translate(-50%)",
-        transition: "1.5s",
+        transition: "1s",
       }}
     >
       <h1
@@ -17,7 +17,7 @@ const Logo = (props) => {
           fontSize: props.submitted ? "2rem" : "4rem",
         }}
       >
-        <span style={{ color: "#ace138" }}>Green</span> Vitals
+        <span style={{ color: "#b1e326" }}>Green</span> Vitals
       </h1>
     </div>
   );

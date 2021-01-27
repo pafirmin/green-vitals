@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   position: absolute;
   overflow: hidden;
   box-sizing: content-box;
-  bottom: ${(props) => (props.show ? "-100vh" : "-50px")};
+  top: ${(props) => (props.show ? "135vh" : "40vh")};
   left: 50%;
   transform: translate(-50%);
   transition: 1.5s;
@@ -17,28 +17,17 @@ const Wrapper = styled.div`
     display: block;
     width: 400px;
     height: 400px;
-    background: #0f0;
+    background: linear-gradient(#d3ff84, #3e7e00);
     position: relative;
     top: 70%;
     border-radius: 50%;
   }
 `;
 
-const Mound = styled.div`
-  display: block;
-  width: 400px;
-  height: 400px;
-  background: #0f0;
-  position: relative;
-  top: 70%;
-
-  border-radius: 50%;
-`;
-
 const Stem = styled.div`
   height: 280px;
   width: 17px;
-  background: #fff;
+  background: linear-gradient(to left, #b1b1b1, #fff);
   position: absolute;
   left: 50%;
   transform: translate(-50%);
@@ -74,7 +63,7 @@ const BladeWrapper = styled.div`
   height: 400px;
   width: 400px;
   top: -20px;
-  animation: ${spin} 2s linear infinite;
+  animation: ${spin} 2.5s linear infinite;
   z-index: 3;
 `;
 
@@ -100,7 +89,6 @@ const Windmill = (props) => {
         <Blade top="-340px" left="272px" rotation={"240"} />
       </BladeWrapper>
       <Stem />
-      <Mound />
     </Wrapper>
   );
 };

@@ -8,9 +8,9 @@ const barColours = {
   no: "#79db88",
   no2: "#ffb555",
   o3: "#a8d6ff",
-  so2: "#00abff",
+  so2: "#0a5e80",
   pm2_5: "#443636",
-  pm10: "#5de6c6",
+  pm10: "#a166f7",
   nh3: "#e65d5d",
 };
 

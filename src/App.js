@@ -51,11 +51,13 @@ const App = () => {
       <GlobalStyle />
       {loading && <Loader />}
       <div style={{ maxWidth: "1100px", margin: "auto" }}>
-        <Logo submitted={submitted} />
-        <PostCodeForm
-          setLocationData={setLocationData}
-          setSubmitted={setSubmitted}
-        />
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Logo submitted={submitted} />
+          <PostCodeForm
+            setLocationData={setLocationData}
+            setSubmitted={setSubmitted}
+          />
+        </div>
         <div style={{ margin: "120px auto 0 auto" }}>
           {!loading && (
             <h2 style={{ marginLeft: "1rem" }}>

@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    background: #3d71a0;
+    background: linear-gradient(#70b5f2, #298adf) fixed no-repeat;
     font-family: 'Inder', sans-serif;
     color: #fff;
   }
