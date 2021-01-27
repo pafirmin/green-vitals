@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import services from "../services/requests";
 
+const postcodeTest = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})$/;
+
 const FormWrapper = styled.div`
   position: absolute;
   top: ${(props) => props.style.top};
@@ -30,10 +32,12 @@ const PostcodeInput = styled.input`
   border-radius: 35px 0 0 35px;
   width: 100%;
   color: #5c5c5c;
+  caret-color: #8f8f8f;
 `;
 
 const PostCodeForm = ({ setLocationData, setSubmitted }) => {
   const inputRef = useRef(null);
+  const [error, setError] = useState("");
   const [postcode, setPostcode] = useState("");
   const [formStyle, setFormStyle] = useState({
     top: "40%",
@@ -51,15 +55,20 @@ const PostCodeForm = ({ setLocationData, setSubmitted }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
+      if (!postcodeTest.test(postcode)) {
+        throw "Please enter a full, valid UK postcode";
+      }
+
       const data = await services.fetchLocationData(postcode);
 
+      setError("");
       setFormStyle({ top: "40px", fontSize: "1.5rem", width: "150px" });
       setLocationData(data);
       setSubmitted(true);
     } catch (err) {
       console.error(err);
+      setError(err);
     }
   };
 
@@ -84,6 +93,7 @@ const PostCodeForm = ({ setLocationData, setSubmitted }) => {
         ></PostcodeInput>
         <SubmitBtn>Submit</SubmitBtn>
       </form>
+      <p style={{ fontSize: ".6em", textAlign: "center" }}>{error}</p>
     </FormWrapper>
   );
 };
