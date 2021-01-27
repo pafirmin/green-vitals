@@ -23,7 +23,7 @@ const PieChart = ({ data, chartColours }) => {
     const { label, value, radians } = obj;
     const canvas = canvasRef.current;
     const [centerX, centerY] = [canvas.width / 2, canvas.height / 2];
-    const radius = (canvas.height / 2) * 0.75;
+    const radius = (canvas.width / 2) * 0.55;
     const arcEnd = arcStart + radians;
 
     ctx.beginPath();

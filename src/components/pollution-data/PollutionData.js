@@ -23,7 +23,7 @@ const airIndex = {
 };
 
 const pollutantIndex = {
-  co: "Carbon monnoxide",
+  co: "Carbon monoxide",
   no: "Nitrous oxide",
   no2: "Nitrous dioxide",
   o3: "Ozone",

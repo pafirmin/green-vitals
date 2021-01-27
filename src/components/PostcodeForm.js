@@ -39,12 +39,12 @@ const Error = styled.div`
   margin-top: 0.5rem;
 `;
 
-const PostCodeForm = ({ setLocationData, setSubmitted }) => {
+const PostcodeForm = ({ setLocationData, setSubmitted }) => {
   const inputRef = useRef(null);
   const [error, setError] = useState("");
   const [postcode, setPostcode] = useState("");
   const [formStyle, setFormStyle] = useState({
-    top: "30vh",
+    top: "220px",
     fontSize: "1.8rem",
     width: "200px",
   });
@@ -111,4 +111,4 @@ const PostCodeForm = ({ setLocationData, setSubmitted }) => {
   );
 };
 
-export default PostCodeForm;
+export default PostcodeForm;

@@ -1,27 +1,35 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import services from "./services/requests";
 import { GlobalStyle } from "./GlobalStyle";
-import PostCodeForm from "./components/PostCodeForm";
-import EnergyData from "./components/energy-data/EnergyData";
+import PostcodeForm from "./components/PostcodeForm";
+
 import Loader from "./components/utils/Loader";
-import PollutionData from "./components/pollution-data/PollutionData";
 import Logo from "./components/layout/Logo";
 import Windmill from "./components/Windmill";
+import styled from "styled-components";
+import MainContent from "./components/layout/MainContent";
+
+const MainWrapper = styled.div`
+  max-width: 1100px;
+  margin: auto;
+`;
+
+const MainContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: space-between;
+  min-height: 100vh;
+`;
 
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [energyData, setEnergyData] = useState();
-  const [pollutionData, setPollutionData] = useState();
-  const [locationData, setLocationData] = useState({
-    admin_district: "",
-    outcode: "",
-    latitude: "",
-    longitude: "",
-  });
+  const [locationData, setLocationData] = useState();
+  const [data, setData] = useState();
 
   useEffect(() => {
-    if (submitted) {
+    if (locationData) {
       fetchData();
     }
   }, [submitted, locationData]);
@@ -32,13 +40,12 @@ const App = () => {
 
       const { outcode, latitude, longitude } = locationData;
 
-      const [pollutionRes, energyRes] = await Promise.all([
+      const [pollutionData, energyData] = await Promise.all([
         services.fetchPollutionData(latitude, longitude),
         services.fetchEnergeyData(outcode),
       ]);
 
-      setEnergyData(energyRes);
-      setPollutionData(pollutionRes);
+      setData({ energyData, pollutionData });
     } catch (err) {
       console.error(err);
     } finally {
@@ -47,29 +54,19 @@ const App = () => {
   };
 
   return (
-    <Fragment>
+    <MainWrapper>
       <GlobalStyle />
       {loading && <Loader />}
-      <div style={{ maxWidth: "1100px", margin: "auto" }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Logo submitted={submitted} />
-          <PostCodeForm
-            setLocationData={setLocationData}
-            setSubmitted={setSubmitted}
-          />
-        </div>
-        <div style={{ margin: "120px auto 0 auto" }}>
-          {!loading && (
-            <h2 style={{ marginLeft: "1rem" }}>
-              {locationData.admin_district}
-            </h2>
-          )}
-          {!loading && energyData && <EnergyData data={energyData} />}
-          {!loading && pollutionData && <PollutionData data={pollutionData} />}
-        </div>
-        <Windmill submitted={submitted} />
-      </div>
-    </Fragment>
+      <Logo submitted={submitted} />
+      <PostcodeForm
+        setLocationData={setLocationData}
+        setSubmitted={setSubmitted}
+      />
+      <MainContentWrapper>
+        <MainContent data={data} location={locationData?.admin_district} />
+        <Windmill loading={loading} />
+      </MainContentWrapper>
+    </MainWrapper>
   );
 };
 

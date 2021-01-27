@@ -4,12 +4,12 @@ const BarChart = ({ data, colours }) => {
   const canvasRef = useRef(null);
   const BAR_WIDTH = 60;
   const BAR_GAP = 10;
+  const LABEL_PADDING = 30;
+  const TOP_PADDING = 30;
   const MAX_VALUE = data.reduce(
-    (max, obj) =>
-      obj.value > max ? Math.ceil(((obj.value + 1) / 10) * 10) : max,
+    (max, obj) => (obj.value > max ? Math.ceil(obj.value / 10) * 10 : max),
     0
   );
-  const LABEL_PADDING = 30;
 
   useEffect(() => {
     const ctx = canvasRef.current.getContext("2d");
@@ -18,9 +18,10 @@ const BarChart = ({ data, colours }) => {
   }, [data]);
 
   const generateChart = (ctx) => {
+    console.log(MAX_VALUE);
     clearCanvas(ctx);
     const chartWidth = BAR_GAP + (BAR_WIDTH + BAR_GAP) * data.length;
-    const chartHeight = canvasRef.current.height - LABEL_PADDING;
+    const chartHeight = canvasRef.current.height - LABEL_PADDING - TOP_PADDING;
     ctx.font = ".9rem arial";
     ctx.fontWeight = "400";
     ctx.fillStyle = "#fff";
@@ -29,20 +30,20 @@ const BarChart = ({ data, colours }) => {
 
     // Draw X Axis
     ctx.beginPath();
-    ctx.moveTo(LABEL_PADDING, chartHeight + 1);
-    ctx.lineTo(chartWidth + 25, chartHeight + 1);
+    ctx.moveTo(LABEL_PADDING, chartHeight + TOP_PADDING);
+    ctx.lineTo(chartWidth + 25, chartHeight + TOP_PADDING);
     ctx.stroke();
 
     // Draw Y Axis
     ctx.beginPath();
-    ctx.moveTo(LABEL_PADDING, 1);
-    ctx.lineTo(LABEL_PADDING, chartHeight);
+    ctx.moveTo(LABEL_PADDING, TOP_PADDING);
+    ctx.lineTo(LABEL_PADDING, chartHeight + TOP_PADDING);
     ctx.stroke();
 
     // Draw Y values
-    for (let i = 1; i >= 0; i -= 0.15) {
+    for (let i = 1; i >= 0; i -= 0.1) {
       const value = Math.round(MAX_VALUE * i);
-      const valueY = chartHeight - chartHeight * i;
+      const valueY = chartHeight + TOP_PADDING - chartHeight * i;
       ctx.fillText(value, 25, valueY);
     }
 
