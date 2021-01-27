@@ -44,7 +44,7 @@ const PollutionWrapper = styled.section`
   animation: ${enterLeft};
   animation-duration: 0.5s;
   animation-iteration-count: 1;
-  animation-timing-function: ease;
+  animation-timing-function: ease-out;
 `;
 
 const PollutionData = ({ data }) => {

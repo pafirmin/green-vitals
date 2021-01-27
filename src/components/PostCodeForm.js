@@ -9,7 +9,6 @@ const FormWrapper = styled.div`
   top: ${(props) => props.style.top};
   left: 50%;
   font-size: ${(props) => props.style.fontSize};
-  width: ${(props) => props.style.width};
   transform: translate(-50%);
   transition: 1s;
 `;
@@ -27,12 +26,18 @@ const SubmitBtn = styled.button`
 const PostcodeInput = styled.input`
   border-radius: 0;
   border: none;
-  padding: 0.6rem 1.6rem;
+  padding: 0.6rem 1em;
   font-size: 1.1em;
   border-radius: 35px 0 0 35px;
-  width: 100%;
+  width: 6.5em;
   color: #5c5c5c;
   caret-color: #8f8f8f;
+`;
+
+const Error = styled.div`
+  font-size: 0.6em;
+  text-align: center;
+  margin-top: 0.5rem;
 `;
 
 const PostCodeForm = ({ setLocationData, setSubmitted }) => {
@@ -40,7 +45,7 @@ const PostCodeForm = ({ setLocationData, setSubmitted }) => {
   const [error, setError] = useState("");
   const [postcode, setPostcode] = useState("");
   const [formStyle, setFormStyle] = useState({
-    top: "40%",
+    top: "30%",
     fontSize: "1.8rem",
     width: "200px",
   });
@@ -63,12 +68,13 @@ const PostCodeForm = ({ setLocationData, setSubmitted }) => {
       const data = await services.fetchLocationData(postcode);
 
       setError("");
-      setFormStyle({ top: "40px", fontSize: "1.5rem", width: "150px" });
+      setFormStyle({ top: "40px", fontSize: "1.2rem", width: "150px" });
       setLocationData(data);
       setSubmitted(true);
     } catch (err) {
       console.error(err);
       setError(err);
+      setTimeout(() => setError(""), 4000);
     }
   };
 
@@ -93,7 +99,11 @@ const PostCodeForm = ({ setLocationData, setSubmitted }) => {
         ></PostcodeInput>
         <SubmitBtn>Submit</SubmitBtn>
       </form>
-      <p style={{ fontSize: ".6em", textAlign: "center" }}>{error}</p>
+      {error && (
+        <Error>
+          <i class="fas fa-exclamation-triangle"></i> <span>{error}</span>
+        </Error>
+      )}
     </FormWrapper>
   );
 };

@@ -6,6 +6,11 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inder', sans-serif;
     color: #fff;
   }
+  
+  h1 {
+    text-align: center;
+    font-size: 4rem;
+  }
 
   h2 {
     font-size: 2rem;

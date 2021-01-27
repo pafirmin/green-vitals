@@ -5,6 +5,8 @@ import PostCodeForm from "./components/PostCodeForm";
 import EnergyData from "./components/energy-data/EnergyData";
 import Loader from "./components/utils/Loader";
 import PollutionData from "./components/pollution-data/PollutionData";
+import Logo from "./components/layout/Logo";
+import Windmill from "./components/Windmill";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -49,11 +51,12 @@ const App = () => {
       <GlobalStyle />
       {loading && <Loader />}
       <div style={{ maxWidth: "1100px", margin: "auto" }}>
+        <Logo submitted={submitted} />
         <PostCodeForm
           setLocationData={setLocationData}
           setSubmitted={setSubmitted}
         />
-        <div style={{ margin: "140px auto 0 auto" }}>
+        <div style={{ margin: "120px auto 0 auto" }}>
           {!loading && (
             <h2 style={{ marginLeft: "1rem" }}>
               {locationData.admin_district}
@@ -62,6 +65,7 @@ const App = () => {
           {!loading && energyData && <EnergyData data={energyData} />}
           {!loading && pollutionData && <PollutionData data={pollutionData} />}
         </div>
+        <Windmill submitted={submitted} />
       </div>
     </Fragment>
   );

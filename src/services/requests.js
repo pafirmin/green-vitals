@@ -40,7 +40,7 @@ const fetchEnergeyData = async (outcode) => {
 const fetchPollutionData = async (lat, long) => {
   try {
     const res = await axios.get(
-      `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${long}&appid=3d1641233d5dc6224b739cf77d08866e`
+      `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_API_KEY}`
     );
 
     return res.data.list[0];
