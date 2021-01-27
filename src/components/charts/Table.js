@@ -1,13 +1,15 @@
 import React, { Fragment } from "react";
 import { capitalize } from "lodash";
+import { useMediaQuery } from "react-responsive";
 
 const Table = ({ data, headings }) => {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
   return (
     <div
       style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
-        width: "30%",
+        width: isMobile ? "80%" : "30%",
         margin: "0 .5rem",
       }}
     >

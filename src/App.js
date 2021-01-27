@@ -53,10 +53,14 @@ const App = () => {
           setLocationData={setLocationData}
           setSubmitted={setSubmitted}
         />
-        <div style={{ margin: "auto" }}>
-          <h2 style={{ marginLeft: "1rem" }}>{locationData.admin_district}</h2>
-          {energyData && <EnergyData data={energyData} />}
-          {pollutionData && <PollutionData data={pollutionData} />}
+        <div style={{ margin: "140px auto 0 auto" }}>
+          {!loading && (
+            <h2 style={{ marginLeft: "1rem" }}>
+              {locationData.admin_district}
+            </h2>
+          )}
+          {!loading && energyData && <EnergyData data={energyData} />}
+          {!loading && pollutionData && <PollutionData data={pollutionData} />}
         </div>
       </div>
     </Fragment>

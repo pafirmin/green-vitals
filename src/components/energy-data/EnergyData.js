@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import styled, { keyframes } from "styled-components";
 import PieChart from "../charts/PieChart";
 import Table from "../charts/Table";
 import DataContainer from "../layout/DataContainer";
@@ -7,13 +8,27 @@ const chartColours = {
   biomass: "#79db88",
   solar: "#ffb555",
   wind: "#a8d6ff",
-  hydro: "#3079b9",
+  hydro: "#00abff",
   coal: "#443636",
   nuclear: "#5de6c6",
   imports: "#e65d5d",
   gas: "#8d7cdf",
   other: "#eb2bee",
 };
+
+const enterRight = keyframes`
+  0% {margin-left: -100vw;}
+  100% {margin: 0;} 
+`;
+
+const EnergyWrapper = styled.section`
+  border-top: 1px solid #fff;
+  padding: 0.5rem 0;
+  animation: ${enterRight};
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+`;
 
 const EnergyData = ({ data }) => {
   const chartData = useCallback(() => {
@@ -36,7 +51,7 @@ const EnergyData = ({ data }) => {
   }, [data]);
 
   return (
-    <section style={{ borderTop: "2px solid #fff", padding: ".5rem 0" }}>
+    <EnergyWrapper>
       <header style={{ textAlign: "center" }}>
         <h3>Energy Overview</h3>
         <p>
@@ -48,7 +63,7 @@ const EnergyData = ({ data }) => {
         <Table headings={["Fuel source", "%"]} data={tableData()} />
         <PieChart data={chartData()} chartColours={chartColours} />
       </DataContainer>
-    </section>
+    </EnergyWrapper>
   );
 };
 

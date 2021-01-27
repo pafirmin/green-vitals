@@ -4,7 +4,7 @@ const BarChart = ({ data, colours }) => {
   const canvasRef = useRef(null);
   const BAR_WIDTH = 60;
   const BAR_GAP = 10;
-  const MAX_VALUE = 60;
+  const MAX_VALUE = 30;
   const LABEL_PADDING = 30;
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const BarChart = ({ data, colours }) => {
 
   const generateChart = (ctx) => {
     clearCanvas(ctx);
-    const chartWidth = canvasRef.current.width;
+    const chartWidth = BAR_GAP + (BAR_WIDTH + BAR_GAP) * data.length;
     const chartHeight = canvasRef.current.height - LABEL_PADDING;
     ctx.font = ".9rem arial";
     ctx.fontWeight = "400";
@@ -26,7 +26,7 @@ const BarChart = ({ data, colours }) => {
     // Draw X Axis
     ctx.beginPath();
     ctx.moveTo(LABEL_PADDING, chartHeight + 1);
-    ctx.lineTo(chartWidth, chartHeight + 1);
+    ctx.lineTo(chartWidth + 25, chartHeight + 1);
     ctx.stroke();
 
     // Draw Y Axis
