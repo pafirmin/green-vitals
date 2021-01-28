@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const BarChart = ({ data, colours }) => {
+  const isMobile = useMediaQuery({ maxWidth: 700 });
+
   const canvasRef = useRef(null);
   const BAR_WIDTH = 60;
   const BAR_GAP = 10;
@@ -15,7 +18,7 @@ const BarChart = ({ data, colours }) => {
     const ctx = canvasRef.current.getContext("2d");
 
     generateChart(ctx);
-  }, [data]);
+  }, [data, isMobile]);
 
   const generateChart = (ctx) => {
     console.log(MAX_VALUE);
@@ -80,7 +83,14 @@ const BarChart = ({ data, colours }) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   };
 
-  return <canvas ref={canvasRef} width="520" height="400"></canvas>;
+  return (
+    <canvas
+      ref={canvasRef}
+      width="550"
+      height="400"
+      style={{ width: isMobile ? "100%" : "auto" }}
+    ></canvas>
+  );
 };
 
 export default BarChart;

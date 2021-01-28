@@ -45,7 +45,7 @@ const PostcodeForm = ({ setLocationData, setSubmitted }) => {
   const [postcode, setPostcode] = useState("");
   const [formStyle, setFormStyle] = useState({
     top: "220px",
-    fontSize: "1.8rem",
+    fontSize: "1.8em",
     width: "200px",
   });
 
@@ -69,7 +69,7 @@ const PostcodeForm = ({ setLocationData, setSubmitted }) => {
       setError("");
       setFormStyle({
         top: "40px",
-        fontSize: "1.2rem",
+        fontSize: "1.2em",
         width: "150px",
       });
       setLocationData(data);

@@ -9,7 +9,7 @@ const Table = ({ data, headings }) => {
       style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
-        width: isMobile ? "80%" : "30%",
+        width: isMobile ? "90%" : "30%",
         margin: "0 .5rem",
       }}
     >

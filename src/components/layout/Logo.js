@@ -5,17 +5,18 @@ const Logo = (props) => {
     <div
       style={{
         position: props.submitted ? "block" : "absolute",
-        top: props.submitted ? "10px" : "100px",
-        left: props.submitted ? "60px" : "50%",
+        top: props.submitted ? "0" : "100px",
+        left: props.submitted ? "5%" : "50%",
+        width: props.submitted ? "auto" : "100%",
         transform: props.submitted ? "" : "translate(-50%)",
         transition: "1s",
-        width: "200px",
+        display: "inline-block",
       }}
     >
       <h1
         style={{
           fontFamily: "'Heebo', sans-serif",
-          fontSize: props.submitted ? "2rem" : "4rem",
+          fontSize: props.submitted ? "2em" : "4em",
           cursor: "default",
         }}
       >

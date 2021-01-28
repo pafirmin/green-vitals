@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const PieChart = ({ data, chartColours }) => {
+  const isMobile = useMediaQuery({ maxWidth: 700 });
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const ctx = canvasRef.current.getContext("2d");
     generatePie(ctx);
-  }, [data]);
+  }, [data, isMobile]);
 
   const generatePie = (ctx) => {
     clearCanvas(ctx);
@@ -23,7 +25,7 @@ const PieChart = ({ data, chartColours }) => {
     const { label, value, radians } = obj;
     const canvas = canvasRef.current;
     const [centerX, centerY] = [canvas.width / 2, canvas.height / 2];
-    const radius = (canvas.width / 2) * 0.55;
+    const radius = (canvas.width / 2) * 0.5;
     const arcEnd = arcStart + radians;
 
     ctx.beginPath();
@@ -53,7 +55,12 @@ const PieChart = ({ data, chartColours }) => {
 
   return (
     <div>
-      <canvas ref={canvasRef} width="520" height="400"></canvas>
+      <canvas
+        ref={canvasRef}
+        width="520"
+        height="400"
+        style={{ width: isMobile ? "100%" : "auto" }}
+      ></canvas>
     </div>
   );
 };

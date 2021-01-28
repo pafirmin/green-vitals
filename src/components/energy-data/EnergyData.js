@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { useMediaQuery } from "react-responsive";
 import styled, { keyframes } from "styled-components";
 import PieChart from "../charts/PieChart";
 import Table from "../charts/Table";
@@ -31,6 +32,7 @@ const EnergyWrapper = styled.section`
 `;
 
 const EnergyData = ({ data }) => {
+  const isMobile = useMediaQuery({ maxWidth: 700 });
   const chartData = useCallback(() => {
     const filteredData = data.generationmix.filter((obj) => obj.perc > 0.5);
     const total = filteredData.reduce((count, obj) => count + obj.perc, 0);
@@ -60,7 +62,11 @@ const EnergyData = ({ data }) => {
         </p>
       </header>
       <DataContainer>
-        <Table headings={["Fuel source", "%"]} data={tableData()} />
+        <Table
+          headings={["Fuel source", "%"]}
+          data={tableData()}
+          style={{ order: isMobile ? "2" : "0" }}
+        />
         <PieChart data={chartData()} chartColours={chartColours} />
       </DataContainer>
     </EnergyWrapper>

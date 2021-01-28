@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     background: linear-gradient(#8ac8ff, #298adf) fixed no-repeat;
     font-family: 'Inder', sans-serif;
     color: #fff;
+    overflow-x: hidden;
   }
   
   h1 {
@@ -29,5 +30,9 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
+    &:focus {
+      outline: none;
+    }
   }
 `;
