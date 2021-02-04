@@ -9,4 +9,4 @@ from these responses is then rendered into suitable charts using the HTML5 canva
 
 # Live Demo
 
-https://github.com/pafirmin/green-vitals/deployments/activity_log?environment=github-pages
+https://pafirmin.github.io/green-vitals/
