@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import services from "../services/requests";
+import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import services from '../services/requests';
 
 const postcodeTest = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})$/;
 
 const FormWrapper = styled.div`
   position: absolute;
-  top: ${(props) => props.style.top};
+  top: ${props => props.style.top};
   left: 50%;
-  font-size: ${(props) => props.style.fontSize};
+  font-size: ${props => props.style.fontSize};
   transform: translate(-50%);
   transition: 1s;
 `;
@@ -41,43 +41,43 @@ const Error = styled.div`
 
 const PostcodeForm = ({ setLocationData, setSubmitted }) => {
   const inputRef = useRef(null);
-  const [error, setError] = useState("");
-  const [postcode, setPostcode] = useState("");
+  const [error, setError] = useState('');
+  const [postcode, setPostcode] = useState('');
   const [formStyle, setFormStyle] = useState({
-    top: "220px",
-    fontSize: "1.8em",
-    width: "200px",
+    top: '220px',
+    fontSize: '1.8em',
+    width: '200px',
   });
 
   useEffect(() => {
     inputRef.current.focus();
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setPostcode(e.target.value.toUpperCase());
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     try {
       if (!postcodeTest.test(postcode)) {
-        throw "Please enter a full, valid UK postcode";
+        throw 'Please enter a full, valid UK postcode';
       }
 
       const data = await services.fetchLocationData(postcode);
 
-      setError("");
+      setError('');
       setFormStyle({
-        top: "40px",
-        fontSize: "1.2em",
-        width: "150px",
+        top: '40px',
+        fontSize: '1.2em',
+        width: '150px',
       });
       setLocationData(data);
       setSubmitted(true);
     } catch (err) {
       console.error(err);
       setError(err);
-      setTimeout(() => setError(""), 4000);
+      setTimeout(() => setError(''), 4000);
     }
   };
 
@@ -85,10 +85,10 @@ const PostcodeForm = ({ setLocationData, setSubmitted }) => {
     <FormWrapper style={formStyle}>
       <form
         style={{
-          display: "flex",
-          justifyContent: "center",
+          display: 'flex',
+          justifyContent: 'center',
         }}
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={e => handleSubmit(e)}
         autoComplete="off"
       >
         <PostcodeInput
@@ -98,8 +98,8 @@ const PostcodeForm = ({ setLocationData, setSubmitted }) => {
           name="postCode"
           placeholder="Postcode"
           value={postcode}
-          onChange={(e) => handleChange(e)}
-        ></PostcodeInput>
+          onChange={e => handleChange(e)}
+        />
         <SubmitBtn>Submit</SubmitBtn>
       </form>
       {error && (

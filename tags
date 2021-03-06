@@ -1,0 +1,141 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+0	src/components/charts/BarChart.js	/^    0$/;"	V
+1	src/components/pollution-data/PollutionData.js	/^  1: "Good",$/;"	P
+2	src/components/pollution-data/PollutionData.js	/^  2: "Fair",$/;"	P
+3	src/components/pollution-data/PollutionData.js	/^  3: "Moderate",$/;"	P
+4	src/components/pollution-data/PollutionData.js	/^  4: "Poor",$/;"	P
+5	src/components/pollution-data/PollutionData.js	/^  5: "Very Poor",$/;"	P
+App	src/App.js	/^const App = () => {$/;"	F
+BAR_GAP	src/components/charts/BarChart.js	/^  const BAR_GAP = 10;$/;"	V
+BAR_WIDTH	src/components/charts/BarChart.js	/^  const BAR_WIDTH = 60;$/;"	V
+BarChart	src/components/charts/BarChart.js	/^const BarChart = ({ data, colours }) => {$/;"	F
+Blade	src/components/Windmill.js	/^const Blade = styled.div`$/;"	S
+BladeWrapper	src/components/Windmill.js	/^const BladeWrapper = styled.div`$/;"	S
+DataContainer	src/components/layout/DataContainer.js	/^const DataContainer = ({ children }) => {$/;"	F
+EnergyData	src/components/energy-data/EnergyData.js	/^const EnergyData = ({ data }) => {$/;"	F
+EnergyWrapper	src/components/energy-data/EnergyData.js	/^const EnergyWrapper = styled.section`$/;"	S
+Error	src/components/PostcodeForm.js	/^const Error = styled.div`$/;"	S
+FormWrapper	src/components/PostcodeForm.js	/^const FormWrapper = styled.div`$/;"	S
+GlobalStyle	src/GlobalStyle.js	/^export const GlobalStyle = createGlobalStyle`$/;"	E
+LABEL_PADDING	src/components/charts/BarChart.js	/^  const LABEL_PADDING = 30;$/;"	V
+Loader	src/components/utils/Loader.js	/^const Loader = () => {$/;"	F
+LoaderWidget	src/components/utils/Loader.js	/^const LoaderWidget = styled.div`$/;"	S
+Logo	src/components/layout/Logo.js	/^const Logo = props => {$/;"	F
+MainContent	src/components/layout/MainContent.js	/^const MainContent = ({ data, location }) => {$/;"	F
+MainContentWrapper	src/App.js	/^const MainContentWrapper = styled.div`$/;"	S
+MainWrapper	src/App.js	/^const MainWrapper = styled.div`$/;"	S
+PieChart	src/components/charts/PieChart.js	/^const PieChart = ({ data, chartColours }) => {$/;"	F
+PollutionData	src/components/pollution-data/PollutionData.js	/^const PollutionData = ({ data }) => {$/;"	F
+PollutionWrapper	src/components/pollution-data/PollutionData.js	/^const PollutionWrapper = styled.section`$/;"	S
+PostcodeForm	src/components/PostcodeForm.js	/^const PostcodeForm = ({ setLocationData, setSubmitted }) => {$/;"	F
+PostcodeInput	src/components/PostcodeForm.js	/^const PostcodeInput = styled.input`$/;"	S
+Stem	src/components/Windmill.js	/^const Stem = styled.div`$/;"	S
+SubmitBtn	src/components/PostcodeForm.js	/^const SubmitBtn = styled.button`$/;"	S
+TOP_PADDING	src/components/charts/BarChart.js	/^  const TOP_PADDING = 30;$/;"	V
+Table	src/components/charts/Table.js	/^const Table = ({ data, headings }) => {$/;"	F
+Windmill	src/components/Windmill.js	/^const Windmill = (props) => {$/;"	F
+Wrapper	src/components/Windmill.js	/^const Wrapper = styled.div`$/;"	S
+accum	src/components/charts/PieChart.js	/^    let accum = 0;$/;"	V
+admin_district	src/services/requests.js	/^      admin_district,$/;"	V
+admin_district	src/services/requests.js	/^    const { admin_district, outcode, latitude, longitude } = res.data.result;$/;"	V
+airIndex	src/components/pollution-data/PollutionData.js	/^const airIndex = {$/;"	O
+barColours	src/components/pollution-data/PollutionData.js	/^const barColours = {$/;"	O
+biomass	src/components/energy-data/EnergyData.js	/^  biomass: "#79db88",$/;"	P
+bottom	src/components/utils/Loader.js	/^        bottom: "50%",$/;"	P
+centerX	src/components/charts/PieChart.js	/^    const [centerX, centerY] = [canvas.width \/ 2, canvas.height \/ 2];$/;"	V
+centerY	src/components/charts/PieChart.js	/^    const [centerX, centerY] = [canvas.width \/ 2, canvas.height \/ 2];$/;"	V
+chartColours	src/components/energy-data/EnergyData.js	/^const chartColours = {$/;"	O
+chartData	src/components/energy-data/EnergyData.js	/^  const chartData = useCallback(() => {$/;"	F
+chartData	src/components/pollution-data/PollutionData.js	/^  const chartData = useCallback(() => {$/;"	F
+clearCanvas	src/components/charts/BarChart.js	/^  const clearCanvas = ctx => {$/;"	F
+clearCanvas	src/components/charts/PieChart.js	/^  const clearCanvas = (ctx) => {$/;"	F
+co	src/components/pollution-data/PollutionData.js	/^  co: "Carbon monoxide",$/;"	P
+coal	src/components/energy-data/EnergyData.js	/^  coal: "#443636",$/;"	P
+content	src/components/Windmill.js	/^    content: "";$/;"	P
+data	src/App.js	/^  const [data, setData] = useState();$/;"	V
+display	src/components/charts/Table.js	/^        display: "grid",$/;"	P
+display	src/components/layout/DataContainer.js	/^        display: "flex",$/;"	P
+drawBar	src/components/charts/BarChart.js	/^  const drawBar = (ctx, chartHeight, accum, obj) => {$/;"	F
+drawSlice	src/components/charts/PieChart.js	/^  const drawSlice = (ctx, arcStart, obj) => {$/;"	F
+energyData	src/App.js	/^      const [pollutionData, energyData] = await Promise.all([$/;"	V
+error	src/components/PostcodeForm.js	/^  const [error, setError] = useState('');$/;"	V
+fetchData	src/App.js	/^  const fetchData = async () => {$/;"	F
+fetchEnergeyData	src/services/requests.js	/^const fetchEnergeyData = async outcode => {$/;"	F
+fetchLocationData	src/services/requests.js	/^const fetchLocationData = async postcode => {$/;"	F
+fetchPollutionData	src/services/requests.js	/^const fetchPollutionData = async (lat, long) => {$/;"	F
+filteredData	src/components/energy-data/EnergyData.js	/^    const filteredData = data.generationmix.filter((obj) => obj.perc > 0.5);$/;"	F
+fontFamily	src/components/layout/Logo.js	/^          fontFamily: "'Heebo', sans-serif",$/;"	P
+formStyle	src/components/PostcodeForm.js	/^  const [formStyle, setFormStyle] = useState({$/;"	V
+formattedData	src/components/energy-data/EnergyData.js	/^    const formattedData = filteredData.map((obj) => {$/;"	F
+gas	src/components/energy-data/EnergyData.js	/^  gas: "#8d7cdf",$/;"	P
+generateChart	src/components/charts/BarChart.js	/^  const generateChart = ctx => {$/;"	F
+generatePie	src/components/charts/PieChart.js	/^  const generatePie = (ctx) => {$/;"	F
+gridTemplateColumns	src/components/charts/Table.js	/^        gridTemplateColumns: "1fr 1fr",$/;"	P
+handleChange	src/components/PostcodeForm.js	/^  const handleChange = e => {$/;"	F
+handleSubmit	src/components/PostcodeForm.js	/^  const handleSubmit = async e => {$/;"	F
+height	src/components/utils/Loader.js	/^          height: "100px",$/;"	P
+hydro	src/components/energy-data/EnergyData.js	/^  hydro: "#00abff",$/;"	P
+imports	src/components/energy-data/EnergyData.js	/^  imports: "#e65d5d",$/;"	P
+label	src/components/charts/PieChart.js	/^    const { label, value, radians } = obj;$/;"	V
+label	src/components/pollution-data/PollutionData.js	/^        label: key,$/;"	P
+latitude	src/App.js	/^      const { outcode, latitude, longitude } = locationData;$/;"	V
+latitude	src/services/requests.js	/^      latitude,$/;"	V
+latitude	src/services/requests.js	/^    const { admin_district, outcode, latitude, longitude } = res.data.result;$/;"	V
+left	src/components/utils/Loader.js	/^        left: "50%",$/;"	P
+loading	src/App.js	/^  const [loading, setLoading] = useState(false);$/;"	V
+locationData	src/App.js	/^  const [locationData, setLocationData] = useState();$/;"	V
+longitude	src/App.js	/^      const { outcode, latitude, longitude } = locationData;$/;"	V
+longitude	src/services/requests.js	/^      longitude,$/;"	V
+longitude	src/services/requests.js	/^    const { admin_district, outcode, latitude, longitude } = res.data.result;$/;"	V
+margin	src/components/charts/Table.js	/^        margin: "0 .5rem",$/;"	P
+margin	src/components/utils/Loader.js	/^          margin: "auto",$/;"	P
+nh3	src/components/pollution-data/PollutionData.js	/^  nh3: "#e65d5d",$/;"	P
+nh3	src/components/pollution-data/PollutionData.js	/^  nh3: "Ammonia",$/;"	P
+no	src/components/pollution-data/PollutionData.js	/^  no: "#79db88",$/;"	P
+no	src/components/pollution-data/PollutionData.js	/^  no: "Nitrous oxide",$/;"	P
+no2	src/components/pollution-data/PollutionData.js	/^  no2: "#ffb555",$/;"	P
+no2	src/components/pollution-data/PollutionData.js	/^  no2: "Nitrous dioxide",$/;"	P
+nuclear	src/components/energy-data/EnergyData.js	/^  nuclear: "#5de6c6",$/;"	P
+o3	src/components/pollution-data/PollutionData.js	/^  o3: "#a8d6ff",$/;"	P
+o3	src/components/pollution-data/PollutionData.js	/^  o3: "Ozone",$/;"	P
+other	src/components/energy-data/EnergyData.js	/^  other: "#eb2bee",$/;"	P
+outcode	src/App.js	/^      const { outcode, latitude, longitude } = locationData;$/;"	V
+outcode	src/services/requests.js	/^      outcode,$/;"	V
+outcode	src/services/requests.js	/^    const { admin_district, outcode, latitude, longitude } = res.data.result;$/;"	V
+pm10	src/components/pollution-data/PollutionData.js	/^  pm10: "#a166f7",$/;"	P
+pm10	src/components/pollution-data/PollutionData.js	/^  pm10: "Coarse particulates",$/;"	P
+pm2_5	src/components/pollution-data/PollutionData.js	/^  pm2_5: "#443636",$/;"	P
+pm2_5	src/components/pollution-data/PollutionData.js	/^  pm2_5: "Fine particulates",$/;"	P
+pollutantIndex	src/components/pollution-data/PollutionData.js	/^const pollutantIndex = {$/;"	O
+pollutionData	src/App.js	/^      const [pollutionData, energyData] = await Promise.all([$/;"	V
+position	src/components/utils/Loader.js	/^        position: "fixed",$/;"	P
+postcode	src/components/PostcodeForm.js	/^  const [postcode, setPostcode] = useState('');$/;"	V
+postcodeTest	src/components/PostcodeForm.js	/^const postcodeTest = \/^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\\s?[0-9][A-Za-z]{2})$\/;$/;"	V
+radians	src/components/charts/PieChart.js	/^    const { label, value, radians } = obj;$/;"	V
+radians	src/components/energy-data/EnergyData.js	/^        radians: (obj.perc \/ total) * (Math.PI * 2),$/;"	M
+services	src/services/requests.js	/^const services = { fetchLocationData, fetchPollutionData, fetchEnergeyData };$/;"	O
+setData	src/App.js	/^  const [data, setData] = useState();$/;"	V
+setError	src/components/PostcodeForm.js	/^  const [error, setError] = useState('');$/;"	V
+setFormStyle	src/components/PostcodeForm.js	/^  const [formStyle, setFormStyle] = useState({$/;"	V
+setLoading	src/App.js	/^  const [loading, setLoading] = useState(false);$/;"	V
+setLocationData	src/App.js	/^  const [locationData, setLocationData] = useState();$/;"	V
+setPostcode	src/components/PostcodeForm.js	/^  const [postcode, setPostcode] = useState('');$/;"	V
+setSubmitted	src/App.js	/^  const [submitted, setSubmitted] = useState(false);$/;"	V
+so2	src/components/pollution-data/PollutionData.js	/^  so2: "#0a5e80",$/;"	P
+so2	src/components/pollution-data/PollutionData.js	/^  so2: "Sulphur dioxide",$/;"	P
+solar	src/components/energy-data/EnergyData.js	/^  solar: "#ffb555",$/;"	P
+submitted	src/App.js	/^  const [submitted, setSubmitted] = useState(false);$/;"	V
+tableData	src/components/energy-data/EnergyData.js	/^  const tableData = useCallback(() => {$/;"	F
+tableData	src/components/pollution-data/PollutionData.js	/^  const tableData = useCallback(() => {$/;"	F
+textAlign	src/components/utils/Loader.js	/^        textAlign: "center",$/;"	P
+total	src/components/energy-data/EnergyData.js	/^    const total = filteredData.reduce((count, obj) => count + obj.perc, 0);$/;"	F
+transform	src/components/utils/Loader.js	/^        transform: "translate(-50%)",$/;"	P
+value	src/components/charts/PieChart.js	/^    const { label, value, radians } = obj;$/;"	V
+value	src/components/pollution-data/PollutionData.js	/^      value,$/;"	V
+width	src/components/utils/Loader.js	/^          width: "100px",$/;"	P
+wind	src/components/energy-data/EnergyData.js	/^  wind: "#a8d6ff",$/;"	P

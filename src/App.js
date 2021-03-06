@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import services from "./services/requests";
-import { GlobalStyle } from "./GlobalStyle";
-import PostcodeForm from "./components/PostcodeForm";
-
-import Loader from "./components/utils/Loader";
-import Logo from "./components/layout/Logo";
-import Windmill from "./components/Windmill";
-import styled from "styled-components";
-import MainContent from "./components/layout/MainContent";
-import { useMediaQuery } from "react-responsive";
+import React, { useEffect, useState } from 'react';
+import services from './services/requests';
+import { GlobalStyle } from './GlobalStyle';
+import PostcodeForm from './components/PostcodeForm';
+import Loader from './components/utils/Loader';
+import Logo from './components/layout/Logo';
+import Windmill from './components/Windmill';
+import styled from 'styled-components';
+import MainContent from './components/layout/MainContent';
+import { useMediaQuery } from 'react-responsive';
 
 const MainWrapper = styled.div`
   max-width: 1100px;
@@ -60,7 +59,7 @@ const App = () => {
     <MainWrapper>
       <GlobalStyle />
       {loading && <Loader />}
-      <div style={{ fontSize: isMobile ? ".8rem" : "1rem" }}>
+      <div style={{ fontSize: isMobile ? '.8rem' : '1rem' }}>
         <Logo submitted={submitted} />
         <PostcodeForm
           setLocationData={setLocationData}

@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { useMediaQuery } from "react-responsive";
+import React, { useEffect, useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 const BarChart = ({ data, colours }) => {
   const isMobile = useMediaQuery({ maxWidth: 700 });
@@ -15,21 +15,20 @@ const BarChart = ({ data, colours }) => {
   );
 
   useEffect(() => {
-    const ctx = canvasRef.current.getContext("2d");
+    const ctx = canvasRef.current.getContext('2d');
 
     generateChart(ctx);
   }, [data, isMobile]);
 
-  const generateChart = (ctx) => {
-    console.log(MAX_VALUE);
+  const generateChart = ctx => {
     clearCanvas(ctx);
     const chartWidth = BAR_GAP + (BAR_WIDTH + BAR_GAP) * data.length;
     const chartHeight = canvasRef.current.height - LABEL_PADDING - TOP_PADDING;
-    ctx.font = ".9rem arial";
-    ctx.fontWeight = "400";
-    ctx.fillStyle = "#fff";
-    ctx.strokeStyle = "#fff";
-    ctx.textAlign = "right";
+    ctx.font = '.9rem arial';
+    ctx.fontWeight = '400';
+    ctx.fillStyle = '#fff';
+    ctx.strokeStyle = '#fff';
+    ctx.textAlign = 'right';
 
     // Draw X Axis
     ctx.beginPath();
@@ -52,7 +51,7 @@ const BarChart = ({ data, colours }) => {
 
     // Draw bars
     let accum = BAR_GAP + LABEL_PADDING;
-    data.forEach((obj) => {
+    data.forEach(obj => {
       drawBar(ctx, chartHeight, accum, obj);
       accum += BAR_WIDTH + BAR_GAP;
     });
@@ -73,12 +72,12 @@ const BarChart = ({ data, colours }) => {
     const labelX = rectX + BAR_WIDTH / 2;
     const labelY = rectY + barHeight + 20;
 
-    ctx.textAlign = "center";
-    ctx.fillStyle = "#fff";
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#fff';
     ctx.fillText(`${obj.label}`, labelX, labelY);
   };
 
-  const clearCanvas = (ctx) => {
+  const clearCanvas = ctx => {
     const canvas = canvasRef.current;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   };
@@ -88,7 +87,7 @@ const BarChart = ({ data, colours }) => {
       ref={canvasRef}
       width="550"
       height="400"
-      style={{ width: isMobile ? "100%" : "auto" }}
+      style={{ width: isMobile ? '100%' : 'auto' }}
     ></canvas>
   );
 };
